@@ -3,28 +3,30 @@ package pl.kielce.tu.isi.userapp.model.components;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import pl.kielce.tu.isi.userapp.model.dao.ProductRepository;
+import pl.kielce.tu.isi.userapp.model.dao.VisitRepository;
 import pl.kielce.tu.isi.userapp.model.dto.ProductDto;
+import pl.kielce.tu.isi.userapp.model.dto.VisitDto;
 import pl.kielce.tu.isi.userapp.model.entities.Product;
+import pl.kielce.tu.isi.userapp.model.entities.Visit;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Component
 @RequiredArgsConstructor
-public class ProductRepositoryComponent {
+public class VisitRepositoryComponent {
 
-    private final ProductRepository productRepository;
+    private final VisitRepository visitRepository;
 
-    public ProductDto saveProduct(ProductDto productDto) {
-        Product product = productRepository.save(productDto.createEntity());
-        return new ProductDto(product);
+    public VisitDto saveVisit(VisitDto visitDto) {
+        Visit visit = visitRepository.save(visitDto.createEntity());
+        return new VisitDto(visit);
     }
 
-    public List<ProductDto> findAll() {
-        return productRepository.findAll().stream()
-                .map(product -> new ProductDto(product))
+    public List<VisitDto> findAll() {
+        return visitRepository.findAll().stream()
+                .map(visit -> new VisitDto(visit))
                 .collect(Collectors.toList());
     }
 
@@ -34,30 +36,30 @@ public class ProductRepositoryComponent {
 //                .collect(Collectors.toList());
 //    }
 
-    public List<ProductDto> findAllByPriceBetween(Long minPrice, Long maxPrice) {
-        return productRepository.findByPriceBetween(minPrice.floatValue(), maxPrice.floatValue()).stream()
-                .map(product -> new ProductDto(product))
-                .collect(Collectors.toList());
+//    public List<ProductDto> findAllByPriceBetween(Long minPrice, Long maxPrice) {
+//        return productRepository.findByPriceBetween(minPrice.floatValue(), maxPrice.floatValue()).stream()
+//                .map(product -> new ProductDto(product))
+//                .collect(Collectors.toList());
+//    }
+
+//    public List<ProductDto> findByProducerNipLike(String nipLike) {
+//        return productRepository.findByProducerNipLike(String.format("%%%s%%", nipLike)).stream().map(ProductDto::new).collect(Collectors.toList());
+//    }
+
+    public Stream<VisitDto> findById(long visitId) {
+
+        return visitRepository.findById(visitId).stream().map(VisitDto::new);
     }
 
-    public List<ProductDto> findByProducerNipLike(String nipLike) {
-        return productRepository.findByProducerNipLike(String.format("%%%s%%", nipLike)).stream().map(ProductDto::new).collect(Collectors.toList());
-    }
 
-    public Stream<ProductDto> findById(long prodId) {
+//    public Stream<ProductDto> findByName(String prodName) {
+//
+//        return visitRepository.findByName(prodName).stream().map(ProductDto::new);
+//    }
 
-        return productRepository.findById(prodId).stream().map(ProductDto::new);
-    }
-
-
-    public Stream<ProductDto> findByName(String prodName) {
-
-        return productRepository.findByName(prodName).stream().map(ProductDto::new);
-    }
-
-    public ProductDto updateProduct(ProductDto productDto, long id) {
-        Product product = productRepository.save(productDto.updateEntity(productDto,id));
-        return new ProductDto(product);
+    public VisitDto updateVisit(VisitDto visitDto, long id) {
+        Visit visit = visitRepository.save(visitDto.updateEntity(visitDto,id));
+        return new VisitDto(visit);
     }
 
 }

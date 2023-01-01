@@ -23,4 +23,18 @@ public class User {
     @Column(name = "user_last_login", nullable = false)
     private Date lastLogin;
 
+    @Column(name = "user_role")
+    private String userRole;
+
+    @Column(name = "user_status")
+    private String userstatus;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "idpatient", referencedColumnName = "id")
+    Patient patient;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "iddoctor", referencedColumnName = "id")
+    Doctor doctor;
+
 }

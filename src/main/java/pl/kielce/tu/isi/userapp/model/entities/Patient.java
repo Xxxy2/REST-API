@@ -15,10 +15,20 @@ public class Patient {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "patientname", nullable = false, unique = true)
+    @Column(name = "patientname", nullable = false)
     private String name;
+
+    @Column(name = "patientlastname", nullable = false)
+    private String lastName;
+
+    @Column(name = "patientpesel", nullable = false, unique = true)
+    private String patientPesel;
 
     @OneToMany(mappedBy = "patient")
     private List<Visit> visitsList;
+
+    @OneToOne(mappedBy = "patient")
+    @JoinColumn(name = "iduser", nullable = false)
+    private User user;
 
 }

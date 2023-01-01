@@ -23,15 +23,16 @@ public class UserDto {
 
     private String password;
 
-
     private Date lastLogin;
 
+    private String userRole;
 
     public User createEntity() {
         User user = new User();
         user.setLogin(this.login);
         user.setLastLogin(this.lastLogin);
         user.setPassword(this.password);
+        user.setUserRole("user");
         return user;
     }
 
@@ -40,6 +41,7 @@ public class UserDto {
         this.login = user.getLogin();
         this.lastLogin = user.getLastLogin();
         this.password = user.getPassword();
+       this.userRole = user.getUserRole();
         }
 
 }

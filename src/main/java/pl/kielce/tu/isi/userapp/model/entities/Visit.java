@@ -14,18 +14,15 @@ public class Visit {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "patientId", nullable = false)
-    private Long patientId;
-
-    @Column(name = "doctorId", nullable = false)
-    private String doctorId;
-
-    @Column(name = "visitStatus", nullable = false)
+    @Column(name = "visit_status", nullable = false)
     private String visitStatus;
 
 
     @ManyToOne
-    @JoinColumn(name = "idPatient", nullable = false)
+    @JoinColumn(name = "id_patient", nullable = false)
     private Patient patient;
+    @ManyToOne
+    @JoinColumn(name = "id_doctor", nullable = false)
+    private Doctor doctor;
 
 }
