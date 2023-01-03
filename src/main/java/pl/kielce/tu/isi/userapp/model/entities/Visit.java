@@ -3,6 +3,7 @@ package pl.kielce.tu.isi.userapp.model.entities;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -16,6 +17,9 @@ public class Visit {
 
     @Column(name = "visit_status", nullable = false)
     private String visitStatus;
+
+    @Column(name = "visit_date", nullable = false)
+    private Date visitDate;
 
 
     @ManyToOne

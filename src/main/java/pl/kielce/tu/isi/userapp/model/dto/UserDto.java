@@ -27,6 +27,8 @@ public class UserDto {
 
     private String userRole;
 
+    private  String userStatus;
+
     public User createEntity() {
         User user = new User();
         user.setLogin(this.login);
@@ -43,5 +45,17 @@ public class UserDto {
         this.password = user.getPassword();
        this.userRole = user.getUserRole();
         }
+
+
+    public User updateEntity(UserDto userDto, Long userId) {
+        User user = new User();
+        user.setId(userId);
+        user.setLogin(userDto.getLogin());
+        user.setLastLogin(userDto.getLastLogin());
+        user.setPassword(userDto.getPassword());
+        user.setUserRole(userDto.getUserRole());
+        user.setUserstatus(userDto.getUserStatus());
+        return user;
+    }
 
 }

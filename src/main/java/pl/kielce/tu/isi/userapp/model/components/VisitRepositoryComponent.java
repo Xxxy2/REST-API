@@ -50,7 +50,16 @@ public class VisitRepositoryComponent {
 
         return visitRepository.findById(visitId).stream().map(VisitDto::new);
     }
+    public List<VisitDto> findVisitsByDoctor_IdAndVisitStatus(Long doctorId,String visitStatus){
 
+        return visitRepository.findVisitsByDoctor_IdAndVisitStatus(doctorId,visitStatus).stream().map(visit -> new VisitDto(visit))
+                .collect(Collectors.toList());
+    }
+
+    public Long countVisitsByDoctor_IdAndVisitStatus(Long doctorId,String visitStatus){
+
+        return visitRepository.countVisitsByDoctor_IdAndVisitStatus(doctorId,visitStatus);
+    }
 
 //    public Stream<ProductDto> findByName(String prodName) {
 //

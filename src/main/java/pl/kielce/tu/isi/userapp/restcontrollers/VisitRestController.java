@@ -53,6 +53,15 @@ public class VisitRestController {
 //        return productRepositoryComponent.findByName(prodName);
 //    }
 
+    @GetMapping(value = "/d/{doctorId}/{visitStatus}", produces = "application/json")
+    public List<VisitDto> findVisitsByDoctor_IdAndVisitStatus(@PathVariable("doctorId") long doctorId, @PathVariable("visitStatus") String visitStatus) {
+        return visitRepositoryComponent.findVisitsByDoctor_IdAndVisitStatus(doctorId,visitStatus);
+    }
+
+    @GetMapping(value = "/count/{doctorId}/{visitStatus}", produces = "application/json")
+    public Long countVisitsByDoctor_IdAndVisitStatus(@PathVariable("doctorId") long doctorId, @PathVariable("visitStatus") String visitStatus) {
+        return visitRepositoryComponent.countVisitsByDoctor_IdAndVisitStatus(doctorId,visitStatus);
+    }
 
     @PutMapping(value = "/{id}")
     public void update(@PathVariable( "id" ) Long id, @RequestBody VisitDto visitDto) {
