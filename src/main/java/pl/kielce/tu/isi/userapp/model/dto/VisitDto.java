@@ -19,8 +19,11 @@ public class VisitDto {
     private Date visitDate;
 
     private String visitStatus;
+
+    private String visitNote;
     private Long idPatient;
     private Long idDoctor;
+    private List<Long> medicineList;
 
 
     public Visit createEntity() {
@@ -29,9 +32,12 @@ public class VisitDto {
         Doctor doctor = new Doctor();
         doctor.setId(this.idDoctor);
         Visit visit = new Visit();
+        visit.setVisitNote(this.visitNote);
         visit.setVisitDate(this.visitDate);
         visit.setVisitStatus(this.visitStatus);
         visit.setPatient(patient);
+        visit.setDoctor(doctor);
+        visit.setMedicineList(new ArrayList<>());
         return visit;
     }
 
@@ -40,23 +46,19 @@ public class VisitDto {
         this.idDoctor = visit.getDoctor().getId();
         this.visitDate=visit.getVisitDate();
         this.visitStatus = visit.getVisitStatus();
+        this.visitNote = visit.getVisitNote();
         this.idPatient = visit.getPatient().getId();
+        this.medicineList = visit.getMedicineList().stream().map(Medicine::getId).collect(Collectors.toList());
     }
 
 
     public Visit updateEntity(VisitDto visitDto, long visitId) {
 
-//        Producer producer = new Producer();
-//        producer.setId(this.idProducer);
 
         Visit visit = new Visit();
         visit.setId(visitId);
         visit.setVisitStatus(visitDto.getVisitStatus());
-//        product.setName(productDto.getName());
-//        product.setAmount(productDto.getAmount());
-//        product.setPrice(productDto.getPrice());
-//
-//        product.setProducer(producer);
+        visit.setVisitNote(visitDto.getVisitNote());
 
         return visit;
     }

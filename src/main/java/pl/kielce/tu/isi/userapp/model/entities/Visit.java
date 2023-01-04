@@ -18,6 +18,9 @@ public class Visit {
     @Column(name = "visit_status", nullable = false)
     private String visitStatus;
 
+    @Column(name = "visit_note")
+    private String visitNote;
+
     @Column(name = "visit_date", nullable = false)
     private Date visitDate;
 
@@ -28,5 +31,8 @@ public class Visit {
     @ManyToOne
     @JoinColumn(name = "id_doctor", nullable = false)
     private Doctor doctor;
+    @OneToMany(mappedBy = "visit")
+    private List<Medicine> medicineList;
+
 
 }

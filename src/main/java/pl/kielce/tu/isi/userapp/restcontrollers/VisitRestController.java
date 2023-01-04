@@ -48,15 +48,26 @@ public class VisitRestController {
         return visitRepositoryComponent.findById(visitId);
     }
 
+//    @GetMapping(value = "")
+//    public Stream<VisitDto> findById(@RequestParam long visitId) {
+//        return visitRepositoryComponent.findById(visitId);
+//    }
+
+
 //    @GetMapping(value = "/s/{prodName}", produces = "application/json")
 //    public Stream<ProductDto> findByName(@PathVariable("prodName") String prodName) {
 //        return productRepositoryComponent.findByName(prodName);
 //    }
 
-    @GetMapping(value = "/d/{doctorId}/{visitStatus}", produces = "application/json")
-    public List<VisitDto> findVisitsByDoctor_IdAndVisitStatus(@PathVariable("doctorId") long doctorId, @PathVariable("visitStatus") String visitStatus) {
+    @GetMapping(value = "/", produces = "application/json")
+    public List<VisitDto> findVisitsByDoctor_IdAndVisitStatus(@RequestParam long doctorId, @RequestParam String visitStatus) {
         return visitRepositoryComponent.findVisitsByDoctor_IdAndVisitStatus(doctorId,visitStatus);
     }
+
+//    @GetMapping(value = "/d/{doctorId}/{visitStatus}", produces = "application/json")
+//    public List<VisitDto> findVisitsByDoctor_IdAndVisitStatus(@PathVariable("doctorId") long doctorId, @PathVariable("visitStatus") String visitStatus) {
+//        return visitRepositoryComponent.findVisitsByDoctor_IdAndVisitStatus(doctorId,visitStatus);
+//    }
 
     @GetMapping(value = "/count/{doctorId}/{visitStatus}", produces = "application/json")
     public Long countVisitsByDoctor_IdAndVisitStatus(@PathVariable("doctorId") long doctorId, @PathVariable("visitStatus") String visitStatus) {
