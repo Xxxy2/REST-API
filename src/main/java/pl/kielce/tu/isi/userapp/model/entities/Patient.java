@@ -24,6 +24,9 @@ public class Patient {
     @Column(name = "patientpesel", nullable = false, unique = true)
     private String patientPesel;
 
+    @Column(name = "patientstatus", nullable = false)
+    private String patientStatus;
+
     @OneToMany(mappedBy = "patient")
     private List<Visit> visitsList;
 

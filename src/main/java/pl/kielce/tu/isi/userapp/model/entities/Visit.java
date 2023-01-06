@@ -31,8 +31,9 @@ public class Visit {
     @ManyToOne
     @JoinColumn(name = "id_doctor", nullable = false)
     private Doctor doctor;
+
     @OneToMany(mappedBy = "visit")
-    private List<Medicine> medicineList;
+    private List<Prescription> prescriptionList;
 
 
 }

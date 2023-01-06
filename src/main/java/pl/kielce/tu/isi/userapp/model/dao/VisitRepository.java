@@ -13,10 +13,6 @@ import java.util.Optional;
 @Repository
 public interface VisitRepository extends JpaRepository<Visit, Long> {
 
-//    @Query("SELECT p FROM Product p WHERE p.price >= ?1 AND p.price < ?2")
-  //  List<Product> findByPriceBetween(float minPrice, float maxPrice);
-
- //   List<Product> findByProducerNipLike(String nip);
     Optional<Visit> findById(Long visitId);
 
     @Query("SELECT DISTINCT v FROM Visit v  WHERE v.doctor.id = ?1 AND v.visitStatus = ?2")

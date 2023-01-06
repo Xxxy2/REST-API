@@ -23,7 +23,8 @@ public class VisitDto {
     private String visitNote;
     private Long idPatient;
     private Long idDoctor;
-    private List<Long> medicineList;
+
+    private List<Long> prescriptionList;
 
 
     public Visit createEntity() {
@@ -37,7 +38,7 @@ public class VisitDto {
         visit.setVisitStatus(this.visitStatus);
         visit.setPatient(patient);
         visit.setDoctor(doctor);
-        visit.setMedicineList(new ArrayList<>());
+        visit.setPrescriptionList(new ArrayList<>());
         return visit;
     }
 
@@ -48,7 +49,9 @@ public class VisitDto {
         this.visitStatus = visit.getVisitStatus();
         this.visitNote = visit.getVisitNote();
         this.idPatient = visit.getPatient().getId();
-        this.medicineList = visit.getMedicineList().stream().map(Medicine::getId).collect(Collectors.toList());
+       // this.idPrescription=visit.getPrescription().getId();
+        this.prescriptionList = visit.getPrescriptionList().stream().map(Prescription::getId).collect(Collectors.toList());
+        //this.medicineList = visit.getMedicineList().stream().map(Medicine::getId).collect(Collectors.toList());
     }
 
 

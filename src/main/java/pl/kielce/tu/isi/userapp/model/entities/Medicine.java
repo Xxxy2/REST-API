@@ -2,16 +2,8 @@ package pl.kielce.tu.isi.userapp.model.entities;
 
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "medicine")
@@ -25,7 +17,7 @@ public class Medicine {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "name", nullable = false, unique = true)
     private String name;
 
     @Column(name = "amount", nullable = false)
@@ -36,9 +28,9 @@ public class Medicine {
     private String medicineStatus;
 
 
-    @ManyToOne
-    @JoinColumn(name = "idVisit", nullable = false)
-    private Visit visit;
+
+    @OneToMany(mappedBy = "medicine")
+    private List<Prescription> prescriptionList;
 
 
 }

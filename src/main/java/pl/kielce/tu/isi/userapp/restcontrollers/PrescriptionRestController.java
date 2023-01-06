@@ -2,28 +2,29 @@ package pl.kielce.tu.isi.userapp.restcontrollers;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import pl.kielce.tu.isi.userapp.model.components.PrescriptionRepositoryComponent;
 import pl.kielce.tu.isi.userapp.model.components.VisitRepositoryComponent;
+import pl.kielce.tu.isi.userapp.model.dto.PrescriptionDto;
 import pl.kielce.tu.isi.userapp.model.dto.VisitDto;
-import pl.kielce.tu.isi.userapp.model.entities.Visit;
 
 import java.util.List;
 import java.util.stream.Stream;
 
 @RestController
-@RequestMapping("/visits")
+@RequestMapping("/prescriptions")
 @RequiredArgsConstructor
-public class VisitRestController {
+public class PrescriptionRestController {
 
-    private final VisitRepositoryComponent visitRepositoryComponent;
+    private final PrescriptionRepositoryComponent prescriptionRepositoryComponent;
 
     @PostMapping(consumes = "application/json", produces = "application/json")
-    public VisitDto saveVisit(@RequestBody VisitDto visitDto) {
-        return visitRepositoryComponent.saveVisit(visitDto);
+    public PrescriptionDto savePrescription(@RequestBody PrescriptionDto prescriptionDto) {
+        return prescriptionRepositoryComponent.savePrescription(prescriptionDto);
     }
 
     @GetMapping(value = "all", produces = "application/json")
-    public List<VisitDto> findAllVisits() {
-        return visitRepositoryComponent.findAll();
+    public List<PrescriptionDto> findAllVisits() {
+        return prescriptionRepositoryComponent.findAll();
     }
 
 //    @GetMapping(produces = "application/json")
@@ -41,9 +42,9 @@ public class VisitRestController {
 //        return productRepositoryComponent.findByProducerNipLike(nipLike);
 //    }
 
-    @GetMapping(value = "/{visitId}", produces = "application/json")
-    public Stream<VisitDto> findById(@PathVariable("visitId") long visitId) {
-        return visitRepositoryComponent.findById(visitId);
+    @GetMapping(value = "/{prescriptionId}", produces = "application/json")
+    public Stream<PrescriptionDto> findById(@PathVariable("prescriptionId") long prescriptionId) {
+        return prescriptionRepositoryComponent.findById(prescriptionId);
     }
 
 //    @GetMapping(value = "")
@@ -57,23 +58,23 @@ public class VisitRestController {
 //        return productRepositoryComponent.findByName(prodName);
 //    }
 
-    @GetMapping(value = "/", produces = "application/json")
-    public List<VisitDto> findVisitsByDoctor_IdAndVisitStatus(@RequestParam long doctorId, @RequestParam String visitStatus) {
-        return visitRepositoryComponent.findVisitsByDoctor_IdAndVisitStatus(doctorId,visitStatus);
-    }
-
-//    @GetMapping(value = "/d/{doctorId}/{visitStatus}", produces = "application/json")
-//    public List<VisitDto> findVisitsByDoctor_IdAndVisitStatus(@PathVariable("doctorId") long doctorId, @PathVariable("visitStatus") String visitStatus) {
+//    @GetMapping(value = "/", produces = "application/json")
+//    public List<PrescriptionDto> findVisitsByDoctor_IdAndVisitStatus(@RequestParam long doctorId, @RequestParam String visitStatus) {
 //        return visitRepositoryComponent.findVisitsByDoctor_IdAndVisitStatus(doctorId,visitStatus);
 //    }
-
-    @GetMapping(value = "/count/{doctorId}/{visitStatus}", produces = "application/json")
-    public Long countVisitsByDoctor_IdAndVisitStatus(@PathVariable("doctorId") long doctorId, @PathVariable("visitStatus") String visitStatus) {
-        return visitRepositoryComponent.countVisitsByDoctor_IdAndVisitStatus(doctorId,visitStatus);
-    }
+//
+////    @GetMapping(value = "/d/{doctorId}/{visitStatus}", produces = "application/json")
+////    public List<VisitDto> findVisitsByDoctor_IdAndVisitStatus(@PathVariable("doctorId") long doctorId, @PathVariable("visitStatus") String visitStatus) {
+////        return visitRepositoryComponent.findVisitsByDoctor_IdAndVisitStatus(doctorId,visitStatus);
+////    }
+//
+//    @GetMapping(value = "/count/{doctorId}/{visitStatus}", produces = "application/json")
+//    public Long countVisitsByDoctor_IdAndVisitStatus(@PathVariable("doctorId") long doctorId, @PathVariable("visitStatus") String visitStatus) {
+//        return visitRepositoryComponent.countVisitsByDoctor_IdAndVisitStatus(doctorId,visitStatus);
+//    }
 
     @PutMapping(value = "/{id}")
-    public void update(@PathVariable( "id" ) Long id, @RequestBody VisitDto visitDto) {
-        visitRepositoryComponent.updateVisit(visitDto,id);
+    public void update(@PathVariable( "id" ) Long id, @RequestBody PrescriptionDto prescriptionDto) {
+        prescriptionRepositoryComponent.updatePrescription(prescriptionDto,id);
     }
 }
