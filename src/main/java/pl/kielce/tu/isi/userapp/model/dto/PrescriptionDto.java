@@ -17,8 +17,6 @@ public class PrescriptionDto {
 
         public Prescription createEntity() {
 
-           // Producer producer = new Producer();
-            //producer.setId(this.idProducer);
             Medicine medicine = new Medicine();
             medicine.setId(this.medicine);
             Visit visit =  new Visit();

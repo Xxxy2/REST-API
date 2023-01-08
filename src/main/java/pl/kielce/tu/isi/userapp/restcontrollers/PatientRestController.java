@@ -2,29 +2,28 @@ package pl.kielce.tu.isi.userapp.restcontrollers;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import pl.kielce.tu.isi.userapp.model.components.PrescriptionRepositoryComponent;
-import pl.kielce.tu.isi.userapp.model.components.VisitRepositoryComponent;
-import pl.kielce.tu.isi.userapp.model.dto.PrescriptionDto;
-import pl.kielce.tu.isi.userapp.model.dto.VisitDto;
+import pl.kielce.tu.isi.userapp.model.components.PatientRepositoryComponent;
+import pl.kielce.tu.isi.userapp.model.dto.PatientDto;
+
 
 import java.util.List;
 import java.util.stream.Stream;
 
 @RestController
-@RequestMapping("/prescriptions")
+@RequestMapping("/patients")
 @RequiredArgsConstructor
-public class PrescriptionRestController {
+public class PatientRestController {
 
-    private final PrescriptionRepositoryComponent prescriptionRepositoryComponent;
+    private final PatientRepositoryComponent patientRepositoryComponent;
 
     @PostMapping(consumes = "application/json", produces = "application/json")
-    public PrescriptionDto savePrescription(@RequestBody PrescriptionDto prescriptionDto) {
-        return prescriptionRepositoryComponent.savePrescription(prescriptionDto);
+    public PatientDto savePatient(@RequestBody PatientDto patientDto) {
+        return patientRepositoryComponent.savePatient(patientDto);
     }
 
     @GetMapping(value = "all", produces = "application/json")
-    public List<PrescriptionDto> findAllPrescriptions() {
-        return prescriptionRepositoryComponent.findAll();
+    public List<PatientDto> findAllPatients() {
+        return patientRepositoryComponent.findAll();
     }
 
 //    @GetMapping(produces = "application/json")
@@ -43,8 +42,8 @@ public class PrescriptionRestController {
 //    }
 
     @GetMapping(value = "/{prescriptionId}", produces = "application/json")
-    public Stream<PrescriptionDto> findById(@PathVariable("prescriptionId") long prescriptionId) {
-        return prescriptionRepositoryComponent.findById(prescriptionId);
+    public Stream<PatientDto> findById(@PathVariable("patientId") long patientId) {
+        return patientRepositoryComponent.findById(patientId);
     }
 
 //    @GetMapping(value = "")
@@ -74,7 +73,7 @@ public class PrescriptionRestController {
 //    }
 
     @PutMapping(value = "/{id}")
-    public void update(@PathVariable( "id" ) Long id, @RequestBody PrescriptionDto prescriptionDto) {
-        prescriptionRepositoryComponent.updatePrescription(prescriptionDto,id);
+    public void update(@PathVariable( "id" ) Long id, @RequestBody PatientDto patientDto) {
+        patientRepositoryComponent.updatePatient(patientDto,id);
     }
 }
