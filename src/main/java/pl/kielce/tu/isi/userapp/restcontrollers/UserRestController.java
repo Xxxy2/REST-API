@@ -10,7 +10,7 @@ import pl.kielce.tu.isi.userapp.model.dto.UserDto;
 import java.util.List;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/users")
 @RequiredArgsConstructor
 public class UserRestController {
 

@@ -2,6 +2,7 @@ package pl.kielce.tu.isi.userapp.model.dto;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import pl.kielce.tu.isi.userapp.model.entities.Producer;
 import pl.kielce.tu.isi.userapp.model.entities.Product;
 import pl.kielce.tu.isi.userapp.model.entities.User;
@@ -30,10 +31,14 @@ public class UserDto {
     private  String userStatus;
 
     public User createEntity() {
+
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String encodedPassword = passwordEncoder.encode(this.password);
         User user = new User();
         user.setLogin(this.login);
         user.setLastLogin(this.lastLogin);
-        user.setPassword(this.password);
+        user.setPassword(encodedPassword);
+        //user.setPassword(this.password);
         user.setUserRole("user");
         return user;
     }
@@ -44,6 +49,7 @@ public class UserDto {
         this.lastLogin = user.getLastLogin();
         this.password = user.getPassword();
        this.userRole = user.getUserRole();
+       this.userStatus=user.getUserstatus();
         }
 
 
