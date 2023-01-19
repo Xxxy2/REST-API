@@ -2,8 +2,7 @@ package pl.kielce.tu.isi.userapp.restcontrollers;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import pl.kielce.tu.isi.userapp.model.components.ProducerRepositoryComponent;
-import pl.kielce.tu.isi.userapp.model.dto.ProducerDto;
+
 
 import java.util.List;
 
@@ -12,8 +11,16 @@ import java.util.List;
 @RequiredArgsConstructor
 public class LoginRestController {
 
-    @GetMapping("/login")
-    public String login() {
-        return "login";
+    @GetMapping("/all")
+    public String hello() {
+        return "hello all";
+    }
+    @GetMapping("/user")
+    public String helloUser() {
+        return "hello user";
+    }
+    @GetMapping("/admin")
+    public String helloadmin() {
+        return "hello admin";
     }
 }
